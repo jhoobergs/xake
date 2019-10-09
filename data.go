@@ -73,7 +73,7 @@ func DownloadData() error {
 	defer t.Stop()
 
 	var bar *pb.ProgressBar
-	bar = pb.StartNew(int(resp.Size))
+	bar = pb.StartNew(int(resp.Size()))
 	bar.ShowTimeLeft = true
 	bar.SetUnits(pb.U_BYTES)
 	bar.Start()
