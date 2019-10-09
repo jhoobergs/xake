@@ -25,11 +25,9 @@ RUN git clone https://github.com/jhoobergs/ximeraLatex.git ~/texmf/tex/latex/xim
 RUN curl -L -o /tmp/go.tar.gz https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf /tmp/go.tar.gz
 ENV PATH $PATH:/usr/local/go/bin
-#RUN ls /usr/local/go/bin
 
 # Build xake
-RUN apt-get update --fix-missing && apt-get install -y make cmake
-RUN apt-get install -y pkg-config
+RUN apt-get update --fix-missing && apt-get install -y make cmake pkg-config
 RUN mkdir -p ~/go/src/github.com/ximeraproject/xake
 ENV GOPATH /root/go
 ENV PKG_CONFIG_PATH $HOME/go/src/github.com/libgit2/git2go/vendor/libgit2/build
