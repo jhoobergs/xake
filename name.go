@@ -6,6 +6,7 @@ import (
 	"github.com/libgit2/git2go"
 	"net/url"
 	"time"
+	"os"
 )
 
 func Name(name string) error {
@@ -17,6 +18,7 @@ func Name(name string) error {
 	if err != nil {
 		s.Stop()
 		log.Error(err)
+		os.Exit(1)
 		return err
 	}
 	s.Stop()
@@ -28,16 +30,22 @@ func Name(name string) error {
 	log.Debug("Opening repository " + repository)
 	repo, err := git.OpenRepository(repository)
 	if err != nil {
+		log.Error(err)
+		os.Exit(1)
 		return err
 	}
 
 	config, err := repo.Config()
 	if err != nil {
+		log.Error(err)
+		os.Exit(1)
 		return err
 	}
 
 	err = config.SetString("http."+ximeraUrl.String()+".extraHeader", "Authorization: Bearer "+token)
 	if err != nil {
+		log.Error(err)
+		os.Exit(1)
 		return err
 	}
 
