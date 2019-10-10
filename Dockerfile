@@ -32,8 +32,8 @@ RUN mkdir -p ~/go/src/github.com/ximeraproject/xake
 ENV GOPATH /root/go
 ENV PKG_CONFIG_PATH $HOME/go/src/github.com/libgit2/git2go/vendor/libgit2/build
 ENV CGO_FLAGS -I$HOME/go/src/github.com/libgit2/git2go/vendor/libgit2/include
-ADD . /root/go/src/github.com/ximeraproject/xake
 RUN go get -d github.com/libgit2/git2go && cd /root/go/src/github.com/libgit2/git2go && git submodule update --init && make install-static
+ADD . /root/go/src/github.com/ximeraproject/xake
 RUN cd ~/go/src/github.com/ximeraproject/xake && go get -tags static
 ENV PATH $PATH:/root/go/bin
 
